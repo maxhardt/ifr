@@ -1,0 +1,12 @@
+# data files
+*.csv
+*.tex
+*.pdf
+*.html
+
+# misc files
+TODOS*
+capstone_short*
+
+# macos
+.DS_store
