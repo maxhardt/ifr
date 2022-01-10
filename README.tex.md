@@ -4,7 +4,7 @@ Biased (preferential) testing refers to the increased odds in getting tested as 
 
 ---
 
-**Disclaimer**: Capstone project in the context of the course [Bayesian Statistics: Techniques and Models](https://www.coursera.org/learn/mcmc-bayesian-statistics) by the University of California: Santa Cruz hosted on Coursera.
+Capstone project in the context of the course [Bayesian Statistics: Techniques and Models](https://www.coursera.org/learn/mcmc-bayesian-statistics) by the University of California: Santa Cruz hosted on Coursera.
 
 ---
 
