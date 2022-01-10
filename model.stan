@@ -1,4 +1,4 @@
-// saved as model_h.stan
+// saved as model.stan
 data {
   int<lower=0> N;
   int<lower=0> D[N];

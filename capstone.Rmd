@@ -1,25 +1,20 @@
 ---
 title: "Effect of testing bias on COVID-19 Infection Fatality Rate"
 output:
-  html_notebook: default
-  html_document:
-    df_print: paged
+  md_document:
+    variant: markdown_github
   pdf_document: default
 ---
 
-**Disclaimer**: The work in this notebook was composed as the capstone project in the context of the course [Bayesian Statistics: Techniques and Models](https://www.coursera.org/learn/mcmc-bayesian-statistics) by the University of California: Santa Cruz hosted on Coursera. All opinions expressed hereinafter represent my own. External data and material used is publicly available and highlighted accordingly.
+**Disclaimer**: Capstone project in the context of the course [Bayesian Statistics: Techniques and Models](https://www.coursera.org/learn/mcmc-bayesian-statistics) by the University of California: Santa Cruz hosted on Coursera. External data and material used is publicly available and highlighted accordingly.
 
 ### Executive Summary
 
-Biased (preferential) testing refers to the phenomenon whereby infected individuals are more likely to be tested than non-infected ones individuals. This can lead to overestimation of the infected population and hence the underestimation of the Infection Fatality Rate (IFR). Using Bayesian prior on the testing bias, this project attempts to illustrate this effect based on current data from selected countries. When compared to unbiased MLE estimates (e.g. $\approx 0.65$% for Germany), the results show the degree of additional uncertainty introduced by the bias (e.g. 95 % C.I. $[0.65,1.21]$ % for Germany) and may help to interpret reported numbers the next time they appear in the media or sciences.
+Infected individuals are more likely to be tested than non-infected ones. This phenomenon is described as biased (or preferential) testing, which leads to biased estimates of the number of infected people in a population, which in turn leads to a biased estimate of the Infection Fatality Rate (IFR). This project attempts to illustrate this effect using Bayesian statistics and data from selected countries. The result is an estimate of the uncertainty introduced by the testing bias.
 
 ### Introduction
 
-A metric that is commonly misused by the media to estimate the risk of dying from a COVID-19 infection is the Case Fatality Rate (CFR), which is given by the ratio of deaths to confirmed cases $CFR=D/CC$. This metric obviously does not take into account that the true number of cases may be much higher. A better suited metric is the Infection Fatality Rate (IFR), which is the ratio of the number of deaths to actual cases $IFR=D/C$.
-
-The challenge is that the true number of cases $C$ is not recorded and hard to estimate, especially due to biased testing. In this context, biased (preferential) testing means that symptomatic cases are more likely to be tested than non-symptomatic cases. This makes the ratio of confirmed cases against the number of tests $CC/T$ likely to overestimate the number of cases in the population.
-
-Using data from selected countries at a late state in the pandemic (October 2020 at time of writing), the goal of this project is to obtain up-to-date estimates on the $IFR=D/IR*P$ based on the observed variables P, T, CC, D under the strong assumption of biased testing.
+A commonly used and misleading metric for describing the risk of dying from a COVID-19 infection is the Case Fatality Rate (CFR), which is given by the ratio of deaths to confirmed cases $CFR=D/CC$. This metric obviously does not take into account that the true number of cases may be much higher. A better suited metric is the Infection Fatality Rate (IFR), which is the ratio of the number of deaths to actual cases $IFR=D/C$. However, the challenge is that the true number of cases $C$ is not recorded and hard to estimate, especially due to biased testing. In this context, biased (preferential) testing means that symptomatic cases are more likely to be tested than non-symptomatic cases. This makes the ratio of confirmed cases against the number of tests $CC/T$ likely to overestimate the number of cases in the population. Using data from selected countries at a late state in the pandemic (October 2020 at time of writing), the goal of this project is to obtain up-to-date estimates on the $IFR=D/IR*P$ based on the observed variables P, T, CC, D under the strong assumption of biased testing.
 
 ### Data
 
@@ -29,7 +24,7 @@ The data used in this project is from *Our World in Data* [1]. Specifically, the
 2) Only selected countries are retained for which data is available
 3) For each country only the most current data is retained
 
-This leaves us with the following dataset:
+This leaves us with the following data set:
 
 ```{r include=FALSE}
 library(readr)
@@ -138,7 +133,6 @@ model_data <- list(
 )
 
 model <- jags.model(
-  # "model_jags.R",
   textConnection(model_string),
   data=model_data,
   n.chains=3
@@ -198,7 +192,6 @@ model {
 "
 
 fit <- stan(
-  # "model.stan",
   model_code=model_stan,
   data=model_data,
   chains=3,
@@ -277,7 +270,7 @@ Estimating the IFR or even the CFR is not meaningful without including covariate
 
 [1] [Our World in Data](https://ourworldindata.org/)
 
-[2] [Data on COVID-19 (coronavirus) by Our World in Data](https://github.com/owid/covid-19-data/tree/master/public/data)
+[2] [Data on COVID-19 by Our World in Data](https://github.com/owid/covid-19-data/tree/master/public/data)
 
 [3] [Bayesian adjustment for preferential testing
 in estimating infection fatality rates, as
