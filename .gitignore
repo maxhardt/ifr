@@ -4,9 +4,8 @@
 *.pdf
 *.html
 
-# misc files
-TODOS*
-capstone_short*
+# R
+.Rhistory
 
 # macos
 .DS_store
